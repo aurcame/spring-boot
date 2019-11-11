@@ -3,26 +3,26 @@ pipeline {
 
    tools {
       // Install the Maven version configured as "M3" and add it to the path.
-      maven "M3"
+      maven "maven"
    }
 
     // environment {
     // // This can be nexus3 or nexus2
-    // NEXUS_VERSION = "nexus3"
+    NEXUS_VERSION = "nexus3"
     // // This can be http or https
-    // NEXUS_PROTOCOL = "http"
+    NEXUS_PROTOCOL = "http"
     // // Where your Nexus is running
-    // NEXUS_URL = "localhost:8081"
+    NEXUS_URL = "localhost:8081"
     // // Repository where we will upload the artifact
-    // NEXUS_REPOSITORY = "nexus-repository"
+    NEXUS_REPOSITORY = "nexus-repository"
     // // Jenkins credential id to authenticate to Nexus OSS
-    // NEXUS_CREDENTIAL_ID = "nexus-credentials"
+    NEXUS_CREDENTIAL_ID = "nexus-credentials"
     // }
 
    stages {
         stage('CHECKOUT') {
             steps {
-                git 'https://github.com/pavel-lucik/gw-spring-boot.git'
+                git 'https://github.com/allainmoyo/spring-boot.git'
             }
         }
         stage('BUILD') {
@@ -30,8 +30,6 @@ pipeline {
                 sh "mvn clean install -f ./spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml"
             }
         }
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
 
 
         //  post {
