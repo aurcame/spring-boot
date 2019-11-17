@@ -49,16 +49,35 @@ pipeline {
                     nexusUrl: 'localhost:8081',
                     groupId: 'java',
                     version: 'build-${BUILD_NUMBER}',
-                    repository: 'nexus-repository',
+                    repository: 'maven-public1',
                     credentialsId: 'nexus-credentials',
                     artifacts: [
                         [artifactId: 'spring-boot-smoke-test-web-ui',
                          classifier: '',
-                         file: './spring-boot-master/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.3.0.BUILD-SNAPSHOT.jar',
+                         file: 'spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.0.BUILD-SNAPSHOT.jar',
                          type: 'jar']
                     ]
                 )
             }
         }
+      //stage("UPLOAD ARTIFACT") {
+      //      steps {
+      //          nexusArtifactUploader(
+      //             nexusVersion: 'nexus3',
+      //              protocol: 'http',
+      //              nexusUrl: 'localhost:8081',
+      //              groupId: 'java',
+      //              version: 'build-${BUILD_NUMBER}',
+      //              repository: 'nexus-repository',
+      //              credentialsId: 'nexus-credentials',
+      //              artifacts: [
+      //                  [artifactId: 'spring-boot-smoke-test-web-ui',
+      //                   classifier: '',
+      //                   file: './spring-boot-master/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.3.0.BUILD-SNAPSHOT.jar',
+      //                   type: 'jar']
+      //              ]
+      //          )
+      //      }
+      //  }
     }
 }
