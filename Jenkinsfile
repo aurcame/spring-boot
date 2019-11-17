@@ -54,7 +54,7 @@ pipeline {
                     artifacts: [
                         [artifactId: 'spring-boot-smoke-test-web-ui',
                          classifier: '',
-                         file: '/var/jenkins_home/workspace/build-deploy_master/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.3.0.BUILD-SNAPSHOT.jar',
+                         file: '/var/jenkins_home/workspace/build-deploy_master/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar',
                          type: 'jar']
                     ]
                 )
