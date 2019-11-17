@@ -73,7 +73,7 @@ pipeline {
       //              artifacts: [
       //                  [artifactId: 'spring-boot-smoke-test-web-ui',
       //                   classifier: '',
-      //                   file: './spring-boot-master/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.3.0.BUILD-SNAPSHOT.jar',
+      //                   file: './spring-boot-master/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar',
       //                   type: 'jar']
       //              ]
       //          )
