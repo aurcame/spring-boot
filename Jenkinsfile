@@ -46,7 +46,7 @@ pipeline {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: '${JENKINSD_PORT_8080_TCP_ADDR}:8081',
+                    nexusUrl: 'localhost:8081',
                     groupId: 'java',
                     version: 'build-${BUILD_NUMBER}',
                     repository: 'nexus-repository',
@@ -60,24 +60,5 @@ pipeline {
                 )
             }
         }
-      //stage("UPLOAD ARTIFACT") {
-      //      steps {
-      //          nexusArtifactUploader(
-      //             nexusVersion: 'nexus3',
-      //              protocol: 'http',
-      //              nexusUrl: 'localhost:8081',
-      //              groupId: 'java',
-      //              version: 'build-${BUILD_NUMBER}',
-      //              repository: 'nexus-repository',
-      //              credentialsId: 'nexus-credentials',
-      //              artifacts: [
-      //                  [artifactId: 'spring-boot-smoke-test-web-ui',
-      //                   classifier: '',
-      //                   file: './spring-boot-master/spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/target/spring-boot-smoke-test-web-ui-2.2.1.BUILD-SNAPSHOT.jar',
-      //                   type: 'jar']
-      //              ]
-      //          )
-      //      }
-      //  }
     }
 }
