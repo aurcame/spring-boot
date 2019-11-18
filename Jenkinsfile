@@ -46,7 +46,7 @@ pipeline {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: 'localhost:8081',
+                    nexusUrl: 'nexus3:8081',
                     groupId: 'java',
                     version: 'build-${BUILD_NUMBER}',
                     repository: 'nexus-repository',
