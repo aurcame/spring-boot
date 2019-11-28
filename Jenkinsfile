@@ -3,7 +3,7 @@ pipeline {
    stages {
         stage('CHECKOUT') {
             steps {
-                git 'https://github.com/pavel-lucik/gw-spring-boot.git'
+                git 'https://github.com/allainmoyo/spring-boot.git'
             }
         }
         stage('BUILD') {
@@ -20,7 +20,7 @@ pipeline {
                     nexusUrl: 'localhost:8081',
                     groupId: 'java',
                     version: 'build-${BUILD_NUMBER}',
-                    repository: 'maven-public1',
+                    repository: 'maven-repository',
                     credentialsId: 'nexus-credentials',
                     artifacts: [
                         [artifactId: 'spring-boot-smoke-test-web-ui',
