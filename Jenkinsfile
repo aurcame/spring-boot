@@ -41,7 +41,6 @@ pipeline {
         stage ('DEPLOY') {
             steps {
                ansiColor('xterm') {
-    
                 build job: 'deploy_jar_QA'
                 build job: 'deploy_jar_CI'
                }
