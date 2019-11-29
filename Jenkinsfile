@@ -3,17 +3,22 @@ pipeline {
    stages {
         stage('CHECKOUT') {
             steps {
+               ansiColor('xterm') {
                 git 'https://github.com/allainmoyo/spring-boot.git'
+               }
             }
         }
         stage('BUILD') {
             steps {
+               ansiColor('xterm') {
                 sh "mvn clean install -f ./spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml"
+               }
             }
         }
-
+      
         stage("UPLOAD ARTIFACT") {
             steps {
+               ansiColor('xterm') {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
@@ -29,13 +34,17 @@ pipeline {
                          type: 'jar']
                     ]
                 )
+               }
             }
         }
 
         stage ('DEPLOY') {
             steps {
+               ansiColor('xterm') {
+    
                 build job: 'deploy_jar_QA'
                 build job: 'deploy_jar_CI'
+               }
             }
         }
     }
