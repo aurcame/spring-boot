@@ -1,12 +1,13 @@
 pipeline {
    
    agent any
+	
    options {
       //clean old builds
       buildDiscarder(logRotator(artifactDaysToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '6', artifactNumToKeepStr: '6'))
       //colorise output
       ansiColor('xterm')
-  }
+   }
    
    tools {
       // Install the Maven version configured as "maven" and add it to the path.
@@ -20,6 +21,7 @@ pipeline {
                 git 'https://github.com/allainmoyo/spring-boot.git'
             }
         }
+	   
          //building the code to get new artifact
         stage('BUILD') {
             steps {
@@ -27,6 +29,7 @@ pipeline {
 				sh "echo ${BUILD_NUMBER} > ~/build.number" //save build number to file to use it in QA/CI deployment jobs
             }
         }
+	   
          //upload artifact to the Nexus3 repository
         stage("UPLOAD ARTIFACT") {
             steps {
@@ -47,6 +50,7 @@ pipeline {
                 )
             }
         }
+	   
          // deployment to QA instance and CI instance
         stage ('DEPLOY') {
             steps {
