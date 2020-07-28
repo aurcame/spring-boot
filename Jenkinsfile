@@ -1,24 +1,29 @@
 pipeline {
-   
+   // execute on any worker node
    agent any
+
+   // execute on specific worker:
+   // agent label 'worker-CI'
 	
    options {
-      //clean old builds
+      // clean old builds
       buildDiscarder(logRotator(artifactDaysToKeepStr: '5', daysToKeepStr: '5', numToKeepStr: '6', artifactNumToKeepStr: '6'))
-      //colorise output
+      // colorise output
       ansiColor('xterm')
+      // print timestamps
+      timestamps()
    }
    
    tools {
       // Install the Maven version configured as "maven" and add it to the path.
-      maven "maven"
+      maven "maven"	
    }
    
    stages {
          //get new code from repository
         stage('CHECKOUT') {
             steps {
-                git 'https://github.com/allainmoyo/spring-boot.git'
+                git 'https://github.com/aurcame/spring-boot.git'
             }
         }
 	   
@@ -30,7 +35,7 @@ pipeline {
             }
         }
 	   
-         //upload artifact to the Nexus3 repository
+        // upload artifact to the Nexus3 repository
         stage("UPLOAD ARTIFACT") {
             steps {
                 nexusArtifactUploader(
@@ -51,7 +56,7 @@ pipeline {
             }
         }
 	   
-         // deployment to QA instance and CI instance
+        // deployment to QA and CI instances with freestyle jobs
         stage ('DEPLOY') {
             steps {
                 build job: 'deploy_jar_QA'
