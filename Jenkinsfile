@@ -59,8 +59,8 @@ pipeline {
         // deployment to QA and CI instances with freestyle jobs
         stage ('DEPLOY') {
             steps {
-                build job: 'deploy_jar_QA'
-                build job: 'deploy_jar_CI'
+                build job: 'GW/deploy_jar_QA'
+                build job: 'GW/deploy_jar_CI'
             }
         }
     }
