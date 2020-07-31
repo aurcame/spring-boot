@@ -16,7 +16,8 @@ pipeline {
    
    tools {
       // Install the Maven version configured as "maven" and add it to the path.
-      maven "maven"	
+      maven "maven"
+      ansible "ansible"
    }
    
    stages {
@@ -31,7 +32,7 @@ pipeline {
         stage('BUILD') {
             steps {
                 sh "mvn clean install -f ./spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml"
-				sh "echo ${BUILD_NUMBER} > ~/build.number" //save build number to file to use it in QA/CI deployment jobs
+		sh "echo ${BUILD_NUMBER} > ~/build.number" //save build number to file to use it in QA/CI deployment jobs
             }
         }
 	   
