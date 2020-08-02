@@ -12,7 +12,7 @@ pipeline {
       // timeout for job building
       timeout(time: 30, unit: 'MINUTES')
 
-      // colorise output
+      // colorise output plugin
       ansiColor('xterm')
 
       // print timestamps
@@ -26,7 +26,7 @@ pipeline {
 
    stages {
         //get new code from repository
-        stage('*** CHECKOUT ***') {
+        stage("\033[32m*** CHECKOUT ***\033[0m") {
             steps {
                 sh label: '*** CLONING REPOSITORY ***', script: """ """
                 git 'https://github.com/aurcame/spring-boot.git'
@@ -34,7 +34,7 @@ pipeline {
         }
 
          //building the code to get new artifact
-        stage('*** BUILD ***') {
+        stage("\033[32m*** BUILD ***\033[0m") {
             steps {
                 sh label: '*** BUILDING ARTIFACT WITH MAVEN ***', script: """
                     mvn clean install -f "./spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml"
@@ -45,7 +45,7 @@ pipeline {
         }
 
         // upload artifact to the Nexus3 repository
-        stage("*** UPLOAD ARTIFACT ***") {
+        stage("\033[32m*** UPLOAD ARTIFACT ***\033[0m") {
             steps {
                 sh label: '*** UPLOADING ARTIFACT TO NEXUS ***', script: """ """
                     nexusArtifactUploader(
@@ -67,9 +67,9 @@ pipeline {
         }
 
         // deployment to QA and CI instances with separate freestyle jobs
-        stage ('*** DEPLOY ***') {
+        stage ("\033[32m*** DEPLOY ***\033[0m") {
            steps {
-            sh label: "\033[32m*** CONTINOUS DELIVERY to QA host ***", script: """ """
+            sh label: '*** CONTINOUS DELIVERY to QA host ***', script: """ """
             // automaticaly deploy to QA host: Continous Delivery
             build job: 'GW/deploy_jar_QA'          
 
