@@ -69,21 +69,9 @@ pipeline {
         // deployment to QA and CI instances with separate freestyle jobs
         stage ('*** DEPLOY ***') {
            steps {
-            sh label: '*** CONTINOUS DELIVERY to QA host ***', script: """ """
+            sh label: "\033[32m*** CONTINOUS DELIVERY to QA host ***", script: """ """
             // automaticaly deploy to QA host: Continous Delivery
-            build job: 'GW/deploy_jar_QA'
-            // Java app ports parameters
-            /*, parameters: [
-            choice (
-            name: 'JAVAPP_SERVICE_PORT',
-            choices: ['8083', '8085', '8087', '8089'],
-            description: 'Java app service port for QA instance'),
-            choice (
-            name: 'JAVAPP_SERVICE_DEPLOY_PORT',
-            choices: ['8092', '8094', '8096', '8098'],
-            description: 'Java app service deploy port for QA instance')
-            ]
-            */
+            build job: 'GW/deploy_jar_QA'          
 
             // should manually deploy to CI: Continous Deployment. Will be started in eploy_jar_QA job
             // build job: 'GW/deploy_jar_CI'
