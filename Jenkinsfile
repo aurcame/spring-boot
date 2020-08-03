@@ -68,15 +68,13 @@ pipeline {
 
         // deployment to QA and CI instances with separate freestyle jobs
         stage ("*** DEPLOY ***") {
-           steps {
-              ansiColor('xterm') {
-            sh label: '*** CONTINOUS DELIVERY to QA host ***', script: """ """
-            // automaticaly deploy to QA host: Continous Delivery
-            build job: 'GW/deploy_jar_QA'          
+           steps { 
+            sh label: '*** CONTINOUS DEPLOYMENT to CI host ***', script: """ """
+            // automaticaly deploy to CI host: Continous Deployment
+            build job: 'GW/deploy_jar_CI'          
 
-            // should manually deploy to CI: Continous Deployment. Will be started in eploy_jar_QA job
-            // build job: 'GW/deploy_jar_CI'
-            }
+            // should manually deploy to QA: Continous Delivery. Will be started in eploy_jar_QA job
+            // build job: 'GW/deploy_jar_QA'
            }
         }
     }
