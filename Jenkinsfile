@@ -43,8 +43,8 @@ pipeline {
                     mvn clean install -f "./spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml"
                     # save build number to file to check it in QA/CI deployment jobs as last
                     echo ${BUILD_NUMBER} > ~/build.number
-                    }
                 """
+               }
             }
         }
 
