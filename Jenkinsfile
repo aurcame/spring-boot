@@ -26,7 +26,7 @@ pipeline {
 
    stages {
         //get new code from repository
-        stage("*** CHECKOUT ***") {
+        stage("CHECKOUT") {
             steps {
                 sh label: '*** CLONING REPOSITORY ***', script: """ """
                 git 'https://github.com/aurcame/spring-boot.git'
@@ -34,7 +34,7 @@ pipeline {
         }
 
          //building the code to get new artifact
-        stage("*** BUILD ***") {
+        stage("BUILD") {
             steps {
                 sh label: '*** BUILDING ARTIFACT WITH MAVEN ***', script: """
                     mvn clean install -f "./spring-boot-tests/spring-boot-smoke-tests/spring-boot-smoke-test-web-ui/pom.xml"
@@ -45,7 +45,7 @@ pipeline {
         }
 
         // upload artifact to the Nexus3 repository
-        stage("*** UPLOAD ARTIFACT ***") {
+        stage("UPLOAD ARTIFACT") {
             steps {
                 sh label: '*** UPLOADING ARTIFACT TO NEXUS ***', script: """ """
                     nexusArtifactUploader(
@@ -67,7 +67,7 @@ pipeline {
         }
 
         // deployment to QA and CI instances with separate freestyle jobs
-        stage ("*** DEPLOY ***") {
+        stage ("DEPLOY") {
            steps { 
             sh label: '*** CONTINOUS DEPLOYMENT to CI host ***', script: """ """
             // automaticaly deploy to CI host: Continous Deployment
