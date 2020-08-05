@@ -41,7 +41,6 @@ pipeline {
                     # save build number to file to check it in QA/CI deployment jobs as last
                     echo ${BUILD_NUMBER} > ~/build.number
                 """
-               stash name: "build-number", includes: "~/build.number"
             }
         }
 
